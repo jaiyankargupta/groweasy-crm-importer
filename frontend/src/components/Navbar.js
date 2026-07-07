@@ -31,14 +31,11 @@ export default function Navbar({ aiProvider = 'groq', onProviderChange, onReset 
         onClick={onReset}
         style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer' }}
       >
-        <div style={{
-          width: '28px', height: '28px',
-          borderRadius: '7px',
-          background: 'linear-gradient(135deg, var(--accent), #a78bfa)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: '#fff', fontWeight: 800, fontSize: '0.8rem',
-          boxShadow: '0 2px 8px rgba(99,102,241,0.3)',
-        }}>G</div>
+        <img
+          src="https://groweasy.ai/_next/image?url=%2Fimages%2Fgroweasy-logo-square.png&w=96&q=75"
+          alt="GrowEasy"
+          style={{ width: '28px', height: '28px', borderRadius: '6px' }}
+        />
         <span style={{
           fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)',
           letterSpacing: '-0.01em',

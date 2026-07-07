@@ -101,8 +101,8 @@ export default function Home() {
         borderTop: '1px solid var(--border)',
         color: 'var(--text-tertiary)', fontSize: '0.7rem',
       }}>
-        <span style={{ fontWeight: 500 }}>GrowEasy CRM Importer</span>
-        <span style={{ margin: '0 0.5rem', opacity: 0.3 }}>·</span>
+        <span style={{ fontWeight: 500 }}>Powered by</span>
+        <span style={{ margin: '0 0.1rem', opacity: 0.3 }}>·</span>
         <a href="https://groweasy.ai" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'none' }}>groweasy.ai</a>
       </footer>
     </main>
