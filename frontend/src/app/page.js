@@ -28,7 +28,7 @@ export default function Home() {
     try {
       const formData = new FormData();
       formData.append('file', fileOrBlob);
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://groweasy-crm-importer.onrender.com';
       const res = await fetch(`${apiUrl}/api/upload`, { method: 'POST', body: formData });
       const data = await res.json();
       if (!res.ok || !data.success) throw new Error(data.error || 'Failed to parse CSV file.');
@@ -50,7 +50,7 @@ export default function Home() {
     setError(null);
     setExtractionProgress({ status: 'processing', percentage: 10, batchIndex: 1, totalBatches: 1, processedRows: 0, totalRows: rawRecords.length });
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://groweasy-crm-importer.onrender.com';
       const progressInterval = setInterval(() => {
         setExtractionProgress(prev => {
           if (!prev || prev.percentage >= 85) return prev;

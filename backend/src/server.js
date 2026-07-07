@@ -6,7 +6,9 @@ const apiRoutes = require('./routes/apiRoutes');
 const app = express();
 const port = process.env.PORT || 5001;
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://groweasy-crm-importer.vercel.app']
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
