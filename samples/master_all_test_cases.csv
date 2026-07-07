@@ -1,0 +1,8 @@
+submission_date,prospect_name,primary_email,alt_email,mobile_no,office_phone,company_name,city_loc,state_loc,country_loc,assigned_to,lead_status,remarks,source_project,possession_date,budget_notes
+2026-07-01 10:00,Vikram Malhotra,vikram@malhotra.in,vikram.personal@gmail.com,+91-9811223344,011-23456789,Malhotra Enterprises,New Delhi,Delhi,India,agent1@groweasy.ai,Follow Up Required,"Interested in 4BHK luxury penthouse",meridian_tower,Dec 2026,"4.5 Cr budget"
+2026-07-01 11:15,Sneha Mukherjee,sneha.m@techcorp.com,,9822334455,,TechCorp India,Bangalore,Karnataka,India,agent2@groweasy.ai,Unreachable,"Called 3 times, phone busy",sarjapur_plots,Immediate,"1.5 Cr villa plot"
+2026-07-01 12:30,Arjun Mehta,arjun@mehta.org,info@mehta.org,9833445566,9833445567,Mehta Group,Mumbai,Maharashtra,India,agent1@groweasy.ai,Not Interested,"Looking for commercial shop only",eden_park,June 2027,"Not matching inventory"
+2026-07-01 14:00,Pooja Nair,pooja.nair@fintech.io,,+91 9844556677,,Fintech Solutions,Chennai,Tamil Nadu,India,agent3@groweasy.ai,Deal Closed,"Token advance paid, agreement executed",varah_swamy,Ready to Move,"2.2 Cr apartment"
+2026-07-01 15:20,Rohan Joshi,rohan.joshi@cloud.com,,,,Cloud Systems,Pune,Maharashtra,India,agent2@groweasy.ai,Good Lead,"Email only lead from webinar",Google Ads,2028,"1.8 Cr"
+2026-07-01 16:45,Kavita Rao,,,9855667788,080-45678901,Rao Consulting,Hyderabad,Telangana,India,agent3@groweasy.ai,Follow Up,"Phone only lead, requested WhatsApp brochure",Referral Campaign,Immediate,"1.1 Cr"
+2026-07-01 17:30,Invalid Lead No Contact,,,,,,No Contact Corp,Kolkata,West Bengal,India,agent1@groweasy.ai,New Lead,"No contact info provided in this row",meridian_tower,,

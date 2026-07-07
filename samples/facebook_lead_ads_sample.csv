@@ -1,0 +1,6 @@
+submission_time,full_name,work_email,phone_number,company_name,city,state,country,campaign_name,adset_name,notes_or_questions,lead_quality
+2026-06-01T10:15:00Z,Amit Kumar,amit.k@techinnovate.in,+91-9811223344,Tech Innovate,Bangalore,Karnataka,India,leads_on_demand,Q2_Campaign,"Interested in AI integration. Alt email: amit.personal@gmail.com",Good
+2026-06-01T11:20:00Z,Neha Sharma,neha.s@designstudio.com,09822334455,Design Studio,Mumbai,Maharashtra,India,meridian_tower,FB_Retargeting,"Called twice, no response",No Answer
+2026-06-01T12:00:00Z,Vikram Singh,vikram@enterprises.org,+91 9833445566,Enterprises Org,Delhi,Delhi,India,eden_park,Lookalike_Ad,"Budget too low, not a fit",Bad
+2026-06-01T13:45:00Z,Ananya Desai,ananya@cloudscale.ai,9844556677,CloudScale AI,Pune,Maharashtra,India,varah_swamy,Direct_Lead,"Signed contract for 1 year",Closed Won
+2026-06-01T14:00:00Z,Invalid Lead Without Contact,,,,No Contact Corp,Chennai,Tamil Nadu,India,sarjapur_plots,Test_Ad,"This row has no email and no phone, should be skipped",
