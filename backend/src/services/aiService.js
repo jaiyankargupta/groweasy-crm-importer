@@ -6,7 +6,7 @@ const ALLOWED_SOURCES = ['leads_on_demand', 'meridian_tower', 'eden_park', 'vara
 async function extractCRMData(records, options = {}) {
   const provider = options.provider || process.env.AI_PROVIDER || 'groq';
   const batchSize = Math.min(Math.max(options.batchSize || parseInt(process.env.BATCH_SIZE || '15', 10), 1), 100);
-  const onProgress = options.onProgress || (() => {});
+  const onProgress = options.onProgress || (() => { });
 
   const totalRows = records.length;
   const batches = [];
@@ -195,7 +195,7 @@ function heuristicExtractRow(row) {
   const name = findVal([/name/i, /prospect/i, /lead.*name/i, /full.*name/i, /contact.*name/i]);
   const email1 = findVal([/primary.*email/i, /^email/i, /work.*email/i, /email.*address/i]);
   const email2 = findVal([/secondary.*email/i, /alt.*email/i, /other.*email/i]);
-  
+
   let phone1 = findVal([/mobile.*phone/i, /^mobile/i, /^phone/i, /contact.*number/i, /phone.*number/i]);
   const phone2 = findVal([/alt.*phone/i, /secondary.*phone/i, /other.*phone/i]);
 

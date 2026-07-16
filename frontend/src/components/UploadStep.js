@@ -109,8 +109,15 @@ export default function UploadStep({ onUpload, isLoading, error }) {
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          onClick={() => document.getElementById('csv-file-input').click()}
-          style={{ marginBottom: '1.5rem', position: 'relative', zIndex: 1 }}
+          onClick={() => { if (!isLoading) document.getElementById('csv-file-input').click(); }}
+          style={{
+            marginBottom: '1.5rem',
+            position: 'relative',
+            zIndex: 1,
+            cursor: isLoading ? 'wait' : 'pointer',
+            opacity: isLoading ? 0.75 : 1,
+            pointerEvents: isLoading ? 'none' : 'auto',
+          }}
         >
           <input
             id="csv-file-input"
@@ -121,26 +128,58 @@ export default function UploadStep({ onUpload, isLoading, error }) {
             disabled={isLoading}
           />
           <div style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{
-              width: '48px', height: '48px', borderRadius: '12px',
-              background: 'var(--accent-muted)',
-              border: '1px solid var(--accent-border)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              margin: '0 auto 1rem',
-              color: 'var(--accent-hover)',
-            }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="17 8 12 3 7 8" />
-                <line x1="12" y1="3" x2="12" y2="15" />
-              </svg>
-            </div>
-            <p style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
-              {isDragging ? 'Drop your file here' : 'Drop CSV here, or click to browse'}
-            </p>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', margin: 0 }}>
-              Supports any column layout • Max 10 MB
-            </p>
+            {isLoading ? (
+              <>
+                <div style={{
+                  width: '48px', height: '48px', borderRadius: '50%',
+                  background: 'var(--accent-muted)',
+                  border: '1px solid var(--accent-border)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1rem',
+                  color: 'var(--accent-hover)',
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="spin">
+                    <line x1="12" y1="2" x2="12" y2="6"></line>
+                    <line x1="12" y1="18" x2="12" y2="22"></line>
+                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                    <line x1="2" y1="12" x2="6" y2="12"></line>
+                    <line x1="18" y1="12" x2="22" y2="12"></line>
+                    <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                    <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                  </svg>
+                </div>
+                <p style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+                  Uploading and analyzing CSV...
+                </p>
+                <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', margin: 0 }} className="pulse-soft">
+                  Parsing headers and records (Render server cold-start can take up to 50s)
+                </p>
+              </>
+            ) : (
+              <>
+                <div style={{
+                  width: '48px', height: '48px', borderRadius: '12px',
+                  background: 'var(--accent-muted)',
+                  border: '1px solid var(--accent-border)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1rem',
+                  color: 'var(--accent-hover)',
+                }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                </div>
+                <p style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+                  {isDragging ? 'Drop your file here' : 'Drop CSV here, or click to browse'}
+                </p>
+                <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', margin: 0 }}>
+                  Supports any column layout • Max 10 MB
+                </p>
+              </>
+            )}
           </div>
         </div>
 
@@ -190,26 +229,40 @@ export default function UploadStep({ onUpload, isLoading, error }) {
                 background: selectedDemo === key ? 'var(--accent-muted)' : 'var(--bg-surface)',
                 border: `1px solid ${selectedDemo === key ? 'var(--accent-border)' : 'var(--border)'}`,
                 borderRadius: 'var(--r-md)',
-                cursor: 'pointer',
+                cursor: isLoading ? 'wait' : 'pointer',
                 textAlign: 'left',
                 width: '100%',
                 fontFamily: 'var(--font-sans)',
                 transition: 'all 0.15s ease',
+                opacity: isLoading && selectedDemo !== key ? 0.5 : 1,
               }}
-              onMouseEnter={e => { if (selectedDemo !== key) e.currentTarget.style.borderColor = 'var(--border-hover)'; }}
-              onMouseLeave={e => { if (selectedDemo !== key) e.currentTarget.style.borderColor = 'var(--border)'; }}
+              onMouseEnter={e => { if (selectedDemo !== key && !isLoading) e.currentTarget.style.borderColor = 'var(--border-hover)'; }}
+              onMouseLeave={e => { if (selectedDemo !== key && !isLoading) e.currentTarget.style.borderColor = 'var(--border)'; }}
             >
               <div style={{
                 width: '32px', height: '32px', borderRadius: '8px',
                 background: 'var(--bg-elevated)',
                 border: '1px solid var(--border)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'var(--text-tertiary)', flexShrink: 0,
+                color: selectedDemo === key ? 'var(--accent-hover)' : 'var(--text-tertiary)', flexShrink: 0,
               }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                </svg>
+                {isLoading && selectedDemo === key ? (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="spin">
+                    <line x1="12" y1="2" x2="12" y2="6"></line>
+                    <line x1="12" y1="18" x2="12" y2="22"></line>
+                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                    <line x1="2" y1="12" x2="6" y2="12"></line>
+                    <line x1="18" y1="12" x2="22" y2="12"></line>
+                    <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                    <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                  </svg>
+                ) : (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                  </svg>
+                )}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.1rem' }}>
